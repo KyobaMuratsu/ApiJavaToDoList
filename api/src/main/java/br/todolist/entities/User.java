@@ -15,25 +15,31 @@ import jakarta.persistence.OneToMany;
 public class User {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID userUuid;
 
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Task> tasks;
 
     private String name;
+    private String email;
+    private String password;
 
     public User() {
     }
 
-    public User(UUID userUuid, List<Task> tasks, String name) {
-        this.userUuid = userUuid;
-        this.tasks = tasks;
+    public User(String name, String email, String password) {
         this.name = name;
+        this.email = email;
+        this.password = password;
     }
 
     public UUID getUserUuid() {
         return userUuid;
+    }
+
+    public void setUserUuid(UUID userUuid) {
+        this.userUuid = userUuid;
     }
 
     public List<Task> getTasks() {
@@ -44,13 +50,30 @@ public class User {
         this.tasks = tasks;
     }
 
-    public String getname() {
+    public String getName() {
         return name;
     }
 
-    public void setname(String name) {
+    public void setName(String name) {
         this.name = name;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getpassword() {
+        return password;
+    }
+
+    public void setpassword(String password) {
+        this.password = password;
+    }
+    
+    
     
 }
